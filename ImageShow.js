@@ -13,6 +13,7 @@ export default class ImageShow extends Component {
         super(props);
         //使用Animated.Value设定初始化值（缩放度，角度等等）
         this.state = {
+            fadeAnim: new Animated.Value(0),
             bounceValue: new Animated.Value(1), //你可以改变这个值看看效果是什么
             rotateValue: new Animated.Value(0),//旋转角度的初始值
         };
@@ -21,6 +22,10 @@ export default class ImageShow extends Component {
     componentDidMount() {
         //在初始化渲染执行之后立刻调用动画执行函数
         this.startAnimation();
+        Animated.timing(this.state.fadeAnim, {
+            toValue: 1,
+            duration: 3000
+        }).start()
     }
  
     startAnimation() {
@@ -48,7 +53,8 @@ export default class ImageShow extends Component {
         return (
                //插入一张图片
             <Animated.Image source={{uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544688258390&di=3bec0483b2dedc9cc6f4249b88fe642e&imgtype=0&src=http%3A%2F%2Fstatic.open-open.com%2Flib%2FuploadImg%2F20160117%2F20160117152222_31.png'}}
-                            style={{width:100,height: 100,marginBottom: 50,borderRadius:50, //图片变园
+                            style={{width:100,height: 100,marginBottom: 50,borderRadius:50, //图片变圆
+                            opacity: fadeAnim,
                             transform: [
                             //将初始化值绑定到动画目标的style属性上
                             {scale: this.state.bounceValue},
