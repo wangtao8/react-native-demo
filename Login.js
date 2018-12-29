@@ -22,8 +22,8 @@ export default class Login extends Component {
   }
   async getData(){
       // let data = await axios.get('http://asd.tunnel.qydev.com/test')
-      let data = await axios.post('http://asd.tunnel.qydev.com/login',{name:'123',pass:'123'})
-      console.log('data:', data)
+      // let data = await axios.post('http://asd.tunnel.qydev.com/login',{name:'123',pass:'123'})
+      // console.log('data:', data)
   }
   changeVal(itemValue, itemIndex){
     this.setState({language: itemValue})
@@ -31,6 +31,7 @@ export default class Login extends Component {
   }
   changeText(text, name){
     this.setState({[name]: text})
+    console.log('language:', this.state[name])
   }
   onPressLearnMore(name){
     if (name == 'login'){
